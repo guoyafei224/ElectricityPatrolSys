@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 开发模式 -->
+	<constant name="struts.custom.i18n.resources" value="log_type"/>
+	
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="sysMgr_default" namespace="/"
+		extends="struts-default,json-default">
+		<action name="User*" class="sysUserAction" method="{1}">
+			<result name="loginSuccess" type="redirectAction">UserGetRole</result>
+			<result name="loginInput">login.jsp</result>
+			<result name="Update">jsp/myWorkTerrace/waitList.jsp</result>
+		</action>
+		<action name="UserGetRole" class="sysRoleAction" method="UserRole">
+			<result name="getRoleSuccess">index.jsp</result>
+			<result name="getRoleInput">404.jsp</result>
+		</action>
+		<!-- 添加角色 -->
+		<action name="addRole" class="sysRoleAction" method="addRole">
+			<result name="success">jsp/sysMgr/roleMgr.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 添加用户 -->
+		<action name="addUser" class="sysUserAction" method="addUser">
+			<result name="success">jsp/sysMgr/userMgr.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 修改角色 -->
+		<action name="updateRole" class="sysRoleAction" method="updateRole">
+			<result name="success">jsp/sysMgr/roleMgr.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 修改该用户的用户信息 -->
+		<action name="updateUserById" class="sysUserAction" method="updateUserById">
+			<result>jsp/sysMgr/userMgr.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 从新分配权限 -->
+		<action name="disTriLimit" class="sysRoleAction" method="disTriLimit">
+			<result>jsp/sysMgr/roleJuriConfig.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+
+		<!-- 修改权限 -->
+		<action name="updateLimit" class="sysLimitAction" method="updateLimit">
+			<result>jsp/sysMgr/roleJuriConfig.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 删除权限 -->
+		<action name="deleteLimit" class="sysLimitAction" method="deleteLimit">
+			<result>jsp/sysMgr/roleJuriConfig.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 添加权限 -->
+		<action name="addLimit" class="sysLimitAction" method="addLimit">
+			<result>jsp/sysMgr/roleJuriConfig.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+		
+	
+	</package>
+
+
+	<package name="sysMgr_json" namespace="/" extends="json-default">
+
+		<!-- 添加日志 -->
+		<action name="addLog" class="sysLogAction" method="addLog">
+			<result name="success" type="json">
+				<param name="root">message</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 根据权限id，查询权限信息 -->
+		<action name="getLimitById" class="sysLimitAction" method="getLimitById">
+			<result name="success" type="json">
+				<param name="root">sysLimit</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 消缺员的待办事项 -->
+		<action name="byXiao" class="myWorkListAction" method="byXiao">
+			<result name="success" type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+		<!-- 巡检员的待办事项 -->
+		<action name="byXun" class="myWorkListAction" method="byXun">
+			<result name="success" type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 线路管理员的待办事项 -->
+		<action name="byXian" class="myWorkListAction" method="byXian">
+			<result name="success" type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 系统管理员的待办事项 -->
+		<action name="byGuan" class="myWorkListAction" method="byGuan">
+			<result name="success" type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 查询所有用户操作日志信息，并进行分页 -->
+		<action name="getSysLog" class="sysUserAction" method="getSysLog">
+			<result type="json" name="getSysUsers">
+				<param name="root">userMap</param>
+			</result>
+		</action>
+		<!-- 查询所有用户信息，并进行分页 -->
+		<action name="getSysUsers" class="sysUserAction" method="getSysUsers">
+			<result type="json" name="getSysUsers">
+				<param name="root">userMap</param>
+			</result>
+		</action>
+		<action name="UserGetRoleLimit" class="sysRoleAction" method="UserGetRoleLimit">
+			<result type="json" name="success">
+				<param name="root">sysLimits</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 查询所有的权限 -->
+		<action name="getAllRole" class="sysRoleAction" method="getAllRole">
+			<result type="json">
+				<param name="root">sysRoles</param>
+			</result>
+		</action>
+
+		<!-- 查询所有角色,并分页 -->
+		<action name="getRoles" class="sysRoleAction" method="getRoles">
+			<result type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+
+		<action name="queryPwdIsTrue" class="sysUserAction" method="queryPwdIsTrue">
+			<result type="json" name="queryPwdIsTrue">
+				<param name="root">message</param>
+			</result>
+		</action>
+		<!-- 删除角色 -->
+		<action name="freeRole" class="sysRoleAction" method="freeRole">
+			<result type="json">
+				<param name="root">message</param>
+			</result>
+		</action>
+		<!-- 删除用户 -->
+		<action name="freeUser" class="sysUserAction" method="freeUser">
+			<result type="json">
+				<param name="root">message</param>
+			</result>
+		</action>
+		<!-- 查询日志 -->
+		<action name="getLogs" class="sysLogAction" method="getLogs">
+			<result type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 修改前，获取该用户信息 -->
+		<action name="getUserById" class="sysUserAction" method="getUserById">
+			<result type="json">
+				<param name="root">sysUser</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 根据角色id，查询所拥有的权限 -->
+		<action name="getLimitByR_id" class="sysRoleAction" method="getLimitByR_id">
+			<result type="json">
+				<param name="root">Limits</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+
+
+	</package>
+
+</struts>    

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="team.ElectricityPatrolSys.dao.SysLimitDao">
+
+	<select id="getChildLimit" parameterType="string" resultType="sysLimit">
+		select
+		l.limit_id,l.limit_name,l.leave,l.limit_status_id,l.url,l.parent_id,isleaf
+		from sys_limit l where parent_id=#{parent_id}
+	</select>
+
+	<!-- 增加新节点 -->
+	<!-- 难度在于，id的写入 -->
+	<insert id="addLimit" parameterType="sysLimit">
+		insert into sys_limit
+		(limit_id,limit_name,leave,limit_status_id,url,parent_id,isleaf)
+		values(#{limit_id},#{limit_name},#{leave},#{limit_status_id},#{url},#{parent_id},#{isleaf})
+	</insert>
+	<!-- 插入之前，先根据当前节点查询子节点中的最大节点 -->
+	<select id="getMaxLimit_id" parameterType="string" resultType="sysLimit">
+		select max(l.limit_id) as limit_id,l.leave,l.isleaf from sys_limit l
+		where l.parent_id=#{limit_id}
+		group by l.leave,l.isleaf
+	</select>
+	<!-- 删除节点 -->
+	<!-- 删除节点，下面de也要删除 -->
+	<delete id="deleteLimit" parameterType="string">
+		delete from sys_limit
+		where limit_id=#{limit_id}
+	</delete>
+	<!-- 如果下面有子节点，先删除子节点 -->
+	<delete id="deleteChidLimit" parameterType="string">
+		delete from sys_limit
+		where parent_id=#{parent_id}
+	</delete>
+	<!-- 先删除中间表中的信息 -->
+	<delete id="deleteRoleLimitByLid" parameterType="string">
+		delete
+		from sys_role_limit rl where rl.limit_id=#{limit_id}
+	</delete>
+	<!-- 修改节点 -->
+	<update id="updateLimit" parameterType="sysLimit">
+		update sys_limit l
+		set
+		l.limit_name=#{limit_name},
+		l.limit_status_id=#{limit_status_id},
+		l.url=#{url}
+		where l.limit_id=#{limit_id}
+	</update>
+
+	<select id="getLimitById" resultType="sysLimit" parameterType="string">
+		select * from sys_limit l
+		where l.limit_id=#{limit_id}
+	</select>
+</mapper>

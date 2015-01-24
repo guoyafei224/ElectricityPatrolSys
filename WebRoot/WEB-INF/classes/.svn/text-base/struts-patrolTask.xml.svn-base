@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="PatrolTask_default" namespace="/" extends="struts-default">
+		<action name="*_PatrolTask" class="patrolTaskAction" method="{1}">
+			<result name="savePatrolTask">jsp/patrolTaskMgr/enactAllot.jsp</result>
+			<result name="queryPollTaskInfo">jsp/patrolTaskMgr/alterPatrolTask.jsp</result>
+			<result name="queryPollTaskInfoToCheck">jsp/patrolTaskMgr/checkPatrolTask.jsp</result>
+			<result name="updateTask">jsp/patrolTaskMgr/enactAllot.jsp</result>
+		</action>
+	</package>
+
+	<package name="PatrolTask_json" namespace="/" extends="json-default">
+		<action name="PatrolTask_*" class="patrolTaskAction" method="{1}">
+			<result name="getAllPatrolMember" type="json">
+				<param name="root">trees</param>
+			</result>
+			<result name="getAllStatus" type="json">
+				<param name="root">statusComm</param>
+			</result>
+			<result name="alterPollTaskInfo" type="json">
+				<param name="root">message</param>
+			</result>
+			<result name="alterStatusIsOk" type="json">
+				<param name="root">message</param>
+			</result>
+			<result name="getPollTaskByPage" type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="executePollTaskByTaskId" type="json">
+				<param name="root">message</param>
+			</result>
+			<result name="alertStatus" type="json">
+				<param name="root">message</param>
+			</result>
+		</action>
+	</package>
+
+</struts>    

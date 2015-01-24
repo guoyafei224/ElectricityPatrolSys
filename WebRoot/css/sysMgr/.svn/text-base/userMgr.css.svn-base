@@ -1,0 +1,70 @@
+body {
+	padding: 0 0 0 10px;
+	width: 980px;
+	height: auto;
+	background-color: #F7F7F7;
+}
+
+.up {
+	margin-left: 10px;
+}
+
+
+
+.time {
+	width: 80px;
+	height: 25px;
+}
+
+.inText {
+	width: 180px;
+	height: 25px;
+}
+
+tr {
+	height: 35px;
+}
+
+select {
+	width: 150px;
+	height: 25px;
+}
+
+.minBut {
+	width: 60px;
+	height: 25px;
+	margin-left:30px;
+}
+
+
+
+td {
+	font-size: 14px;
+}
+
+.empty {
+	margin-top: 15px;
+}
+
+
+#showdia1{
+	padding-top:20px;
+	margin:0px auto;
+	line-height:45px;
+	padding-left:60px;
+}
+
+#showdia1 label{
+	text-align: right;
+}
+
+#showdia2{
+	padding-top:20px;
+	margin:0px auto;
+	line-height:45px;
+	padding-left:60px;
+}
+
+#showdia2 label{
+	text-align: right;
+}

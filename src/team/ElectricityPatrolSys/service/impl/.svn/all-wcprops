@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/t14/!svn/ver/1934/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl
+END
+BugLeaveBizImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/t14/!svn/ver/1840/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/BugLeaveBizImpl.java
+END
+SysLogServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/SysLogServiceImpl.java
+END
+SysUserServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/t14/!svn/ver/1857/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/SysUserServiceImpl.java
+END
+TowerServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/t14/!svn/ver/930/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/TowerServiceImpl.java
+END
+MyWorkListServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/MyWorkListServiceImpl.java
+END
+DoDeElimTaskServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/t14/!svn/ver/1934/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/DoDeElimTaskServiceImpl.java
+END
+BugTypeServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/t14/!svn/ver/1269/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/BugTypeServiceImpl.java
+END
+StatusCommServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/t14/!svn/ver/1393/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/StatusCommServiceImpl.java
+END
+CircuitServicesImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/t14/!svn/ver/1683/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/CircuitServicesImpl.java
+END
+SysLimitServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/t14/!svn/ver/1546/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/SysLimitServiceImpl.java
+END
+DeElimTaskServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/t14/!svn/ver/1554/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/DeElimTaskServiceImpl.java
+END
+SysRoleServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/t14/!svn/ver/1546/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/SysRoleServiceImpl.java
+END
+BugServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/t14/!svn/ver/1926/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/BugServiceImpl.java
+END
+PollTaskServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/t14/!svn/ver/1926/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/impl/PollTaskServiceImpl.java
+END

@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/t14/!svn/ver/1933/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao
+END
+SysLogMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/SysLogMapper.xml
+END
+SysRoleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/SysRoleDao.java
+END
+BugLeaveDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/t14/!svn/ver/1836/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/BugLeaveDao.java
+END
+SysUserMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/t14/!svn/ver/1853/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/SysUserMapper.xml
+END
+PollTaskDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/t14/!svn/ver/1924/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/PollTaskDao.java
+END
+MyWorkListMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/MyWorkListMapper.xml
+END
+DoDeElimTaskMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/t14/!svn/ver/1933/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/DoDeElimTaskMapper.xml
+END
+TowerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/TowerDao.java
+END
+CircuitDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/CircuitDao.java
+END
+StatusCommmapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/StatusCommmapper.xml
+END
+BugTypeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/BugTypeDao.java
+END
+SysLimitDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/SysLimitDao.java
+END
+SysRoleMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/SysRoleMapper.xml
+END
+BugLeaveMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/t14/!svn/ver/1837/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/BugLeaveMapper.xml
+END
+DeElimTaskDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/DeElimTaskDao.java
+END
+BugDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/t14/!svn/ver/1923/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/BugDao.java
+END
+TowerMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/t14/!svn/ver/1703/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/TowerMapper.xml
+END
+CircuitMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/CircuitMapper.xml
+END
+SysLogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/SysLogDao.java
+END
+SysUserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/t14/!svn/ver/1853/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/SysUserDao.java
+END
+BugTypeMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/BugTypeMapper.xml
+END
+SysLimitMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/SysLimitMapper.xml
+END
+MyWorkListDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/MyWorkListDao.java
+END
+DoDeElimTaskDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/1873/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/DoDeElimTaskDao.java
+END
+PatrolTaskMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/1924/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/PatrolTaskMapper.xml
+END
+DeElimTaskMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/DeElimTaskMapper.xml
+END
+StatusCommDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/t14/!svn/ver/1588/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/StatusCommDao.java
+END
+BugMapper.xml
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/t14/!svn/ver/1924/ElectricityPatrolSys/src/team/ElectricityPatrolSys/dao/BugMapper.xml
+END

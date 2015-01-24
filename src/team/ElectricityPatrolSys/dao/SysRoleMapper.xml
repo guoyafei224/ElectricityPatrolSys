@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="team.ElectricityPatrolSys.dao.SysRoleDao">
+
+
+	<!-- 查询所有的权限 -->
+	<select id="UserGetRoleLimit" resultType="sysLimit">
+		select * from sys_limit
+	</select>
+	<!-- 根据角色id和权限id，添加中间表，为角色重新赋值 -->
+	<insert id="addLimitById" parameterType="map">
+		insert into
+		sys_role_limit (id,role_id,limit_id)
+		values(se_sys_role_limit.nextval,#{r_id},#{l_id})
+	</insert>
+
+	<!-- 删除该角色拥有的所有权限 -->
+	<delete id="delLimitById" parameterType="string">
+		delete from
+		sys_role_limit where role_id=#{r_id}
+	</delete>
+
+	<!-- 根据所拥有的角色id，查询其所拥有的权限 -->
+	<select id="getLimitByR_id" parameterType="string" resultType="sysLimit">
+		select l.*
+		from sys_limit l
+		left join sys_role_limit rl
+		on
+		l.limit_id=rl.limit_id
+		left join sys_role r
+		on r.role_id=rl.role_id
+		where r.role_id=#{r_id}
+	</select>
+
+	<!-- 根据角色id删除角色信息 -->
+	<delete id="freeRole" parameterType="string">
+		update sys_role s set
+		s.role_status_id='1004' where role_id=#{r_id}
+	</delete>
+
+	<!-- 修改角色信息 -->
+	<update id="updateRole" parameterType="map">
+		update sys_role r
+		set r.role_name=#{role_name} ,r.role_status_id=#{role_status_id}
+		where
+		r.role_id=#{role_id}
+	</update>
+	<!-- 添加一个角色 -->
+	<insert id="addRole" parameterType="map">
+		<!-- <selectKey keyProperty="role_id" resultType="string" order="BEFORE"> 
+			select 'role'||se_sys_role.nextval from dual </selectKey> -->
+		insert into sys_role (role_id,role_name,create_user_id,role_status_id)
+		values('role'||se_sys_role.nextval,#{role_name},#{create_user_id},#{role_status_id})
+	</insert>
+
+	<!-- 查询总条数 -->
+	<select id="getRoleCount" resultType="int" parameterType="map">
+		select count(*) from sys_role r
+		where 1=1
+		<if test="role_name!=''and role_name!=null">
+			and r.role_name LIKE '%${role_name}%'
+		</if>
+		<if test="status_id!=''and status_id!=null">
+			and r.role_status_id=#{status_id}
+		</if>
+
+	</select>
+	<!-- 进行关联查询 -->
+	<resultMap type="sysRole" id="showRole">
+		<id property="role_id" column="role_id" />
+		<result property="role_name" column="role_name" />
+		<result property="modifidate" column="modifidate" />
+		<association property="sysUser" javaType="sysUser">
+			<id property="user_id" column="user_id" />
+			<result property="account" column="account" />
+			<result property="user_name" column="user_name" />
+		</association>
+		<association property="statusComm" javaType="statusComm">
+			<result property="status_id" column="status_id" />
+			<result property="config_type" column="config_type" />
+			<result property="config_desc" column="config_desc" />
+			<result property="useType" column="useType" />
+			<result property="config_name" column="config_name" />
+		</association>
+
+
+		<collection property="sysRoleLimits" ofType="sysRoleLimit"
+			column="role_id">
+			<id property="id" column="id" />
+			<association property="sysLimit" javaType="sysLimit">
+				<id property="limit_id" column="limit_id" />
+				<result property="limit_name" column="limit_name" />
+				<result property="leave" column="leave" />
+				<result property="url" column="url" />
+				<result property="parent_id" column="parent_id" />
+				<result property="isleaf" column="isleaf" />
+				<association property="statusComm" javaType="statusComm">
+					<result property="status_id" column="status_id" />
+					<result property="config_type" column="config_type" />
+					<result property="config_desc" column="config_desc" />
+					<result property="useType" column="useType" />
+					<result property="config_name" column="config_name" />
+				</association>
+			</association>
+		</collection>
+
+
+		<collection property="sysUserRoles" ofType="sysUserRole"
+			column="role_id">
+			<id property="id" column="id" />
+			<association property="sysUser" javaType="sysUser">
+
+			</association>
+			<association property="sysRole" javaType="sysRole">
+
+			</association>
+		</collection>
+	</resultMap>
+
+
+
+	<select id="getRolesByUid" parameterType="string" resultMap="showRole">
+		select
+		r.u.user_id,u.user_name,u.account,r.role_id,r.role_name,r.create_user_id,r.modifidate,r.role_id,r.role_status_id,rl.id,rl.role_id,rl.limit_id
+		,l.limit_id,l.limit_name,l.leave,l.limit_status_id,l.url,l.parent_id,l.isleaf,s.status_id,s.config_type,s.config_desc,s.usetype,s.config_name
+		from sys_role r
+		left join sys_role_limit rl
+		on r.role_id=rl.role_id
+		left
+		join sys_user_role ur
+		on r.role_id=ur.role_id
+		left join sys_user u
+		on
+		r.create_user_id=u.user_id
+		left join sys_limit l
+		on
+		rl.limit_id=l.limit_id
+		left join status_comm s
+		on
+		s.status_id=r.role_status_id
+		left join status_comm
+		on
+		s.status_id=l.limit_status_id
+		where
+		ur.user_id=#{user_id}
+
+	</select>
+
+
+	<!-- 查询所有的角色 -->
+	<select id="getAllRoles" resultType="sysRole">
+		select s.role_id,s.role_name
+		from sys_role s
+	</select>
+
+	<!-- 查询角色信息，并进行分页 -->
+	<select id="getRoles" parameterType="map" resultMap="showRole">
+
+		select uur.*
+		from (select ur.*,rownum rn from (select
+		r.role_id,r.role_name,u.user_name,s.config_name,r.modifidate,r.role_status_id
+		from
+		sys_role r
+		left join status_comm s
+		on r.role_status_id=s.status_id
+		left
+		join sys_user u
+		on u.user_id=r.create_user_id
+		where 1=1
+		<if test="role_name!=''and role_name!=null">
+			and r.role_name LIKE '%${role_name}%'
+		</if>
+		<if test="status_id!=''and status_id!=null">
+			and s.status_id=#{status_id}
+		</if>
+		order by r.role_id
+		)ur
+		where rownum <![CDATA[<=]]>#{end}
+		) uur
+		where rn>#{start}
+
+	</select>
+</mapper>

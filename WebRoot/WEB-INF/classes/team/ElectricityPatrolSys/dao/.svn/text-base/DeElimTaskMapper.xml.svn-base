@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.ElectricityPatrolSys.dao.DeElimTaskDao">
+	<!-- 巡检任务实体类映射 -->
+	<resultMap type="beHeTask" id="deElimMap">
+	</resultMap>
+
+	<!-- 查询任务编号 -->
+	<select id="getBeHeTaskId" resultType="String">
+		select
+		'RW'||se_behe_task.nextval from dual
+	</select>
+
+	<!-- 新添加任务 -->
+	<insert id="savedeElimTask" parameterType="beHeTask">
+	</insert>
+	<insert id="saveBeHeTaskUser" parameterType="ptu">
+	</insert>
+	<!-- 分页查询巡检任务 -->
+	<!-- 最近时间排序 distinct去重 -->
+	<select id="getBeHeTaskByPage" parameterType="map" resultMap="deElimMap">
+	</select>
+	<select id="queryBeHeTaskInfo" parameterType="String" resultMap="deElimMap">
+	</select>
+
+	<!-- 查询任务总条数 -->
+	<select id="getBeHeTaskSize" resultType="int" parameterType="beHeTask">
+	</select>
+	<!-- 取消任务 -->
+	<update id="alertStatus" parameterType="String">
+		update behe_TASK set
+		ISTRUE=1 where task_id=#{task_id}
+	</update>
+
+	<!-- 查询分配的巡检员 -->
+	<select id="getTaskUser" parameterType="String" resultType="sysUser">
+	</select>
+
+	<!-- 修改巡检任务状态为执行 -->
+	<update id="alterTaskStatus" parameterType="String">
+	</update>
+
+</mapper>

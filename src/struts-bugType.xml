@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	
+
+
+	<!-- <package name="bugType_default" namespace="/"  extends="struts-default" >
+	</package> -->
+	<package name="bugType_json" namespace="/" extends="json-default">
+		<!-- 查询缺陷类型 -->
+
+		<action name="bugType*" class="bugTypeAction" method="{1}">
+			<result type="json" name="select">
+				<param name="root">list</param>
+			</result>
+			<!-- <result type="json" name="Update">
+				<param name="root">list</param>
+			</result> -->
+		</action>
+		
+	</package>
+	<package name="bugType_default" namespace="/" extends="struts-default">
+		<action name="bugTypeUpdate" class="bugTypeAction" method="Update">
+			<result name="Update">jsp/bugMgr/bugTypeSetMyJsp.jsp</result>
+		</action>
+		<action name="bugTypeDelete" class="bugTypeAction" method="Delete">
+			<result name="delete">jsp/bugMgr/bugTypeSetMyJsp.jsp</result>
+		</action>
+		<action name="bugTypeAdd" class="bugTypeAction" method="Add">
+			<result name="add">jsp/bugMgr/bugTypeSetMyJsp.jsp</result>
+		</action>
+	</package>
+	
+</struts>    

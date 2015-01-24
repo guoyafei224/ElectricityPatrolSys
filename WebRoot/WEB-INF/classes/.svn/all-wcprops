@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/t14/!svn/ver/1934/ElectricityPatrolSys/src
+END
+struts-bug.xml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/t14/!svn/ver/1919/ElectricityPatrolSys/src/struts-bug.xml
+END
+struts-patrolTask.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/t14/!svn/ver/1920/ElectricityPatrolSys/src/struts-patrolTask.xml
+END
+struts-deElimTask.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/t14/!svn/ver/1556/ElectricityPatrolSys/src/struts-deElimTask.xml
+END
+MyBatis-Configuration.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/t14/!svn/ver/1861/ElectricityPatrolSys/src/MyBatis-Configuration.xml
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/t14/!svn/ver/49/ElectricityPatrolSys/src/jdbc.properties
+END
+struts-bugLeave.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/t14/!svn/ver/1842/ElectricityPatrolSys/src/struts-bugLeave.xml
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/src/log4j.properties
+END
+struts-tower.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/t14/!svn/ver/1684/ElectricityPatrolSys/src/struts-tower.xml
+END
+struts-circuit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/t14/!svn/ver/1466/ElectricityPatrolSys/src/struts-circuit.xml
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/t14/!svn/ver/1662/ElectricityPatrolSys/src/applicationContext.xml
+END
+struts.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/t14/!svn/ver/1873/ElectricityPatrolSys/src/struts.xml
+END
+struts-bugType.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/t14/!svn/ver/1432/ElectricityPatrolSys/src/struts-bugType.xml
+END
+struts-sysMgr.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/struts-sysMgr.xml
+END
+struts-doDeElimTask.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/t14/!svn/ver/1933/ElectricityPatrolSys/src/struts-doDeElimTask.xml
+END

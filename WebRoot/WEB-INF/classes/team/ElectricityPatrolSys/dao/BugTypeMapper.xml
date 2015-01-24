@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.ElectricityPatrolSys.dao.BugTypeDao">
+	<!-- 修改缺陷类型 -->
+	<update id="bugTypeUpdate" parameterType="bugType">
+		update
+		BUG_TYPE t set
+		t.bug_type_name=#{bug_type_name},
+		t.bug_type_status_id=#{statusComm.status_id}
+		where bug_type_id=#{bug_type_id}
+	</update>
+	<!-- 刪除缺陷类型 -->
+	<delete id="bugTypeDelete" parameterType="bugtype">
+		delete from bug_type t
+		where t.bug_type_id=#{bug_type_id}
+	</delete>
+	<!-- 查詢缺陷类型 -->
+	<resultMap id="bugTypeInfo" type="bugType">
+		<id property="bug_type_id" column="bug_type_id" />
+		<result property="bug_type_name" column="bug_type_name" />
+		<association property="statusComm" javaType="statusComm">
+			<result property="status_id" column="status_id" />
+			<result property="config_name" column="config_name" />
+		</association>
+	</resultMap>
+	<select id="bugTypedSelect" resultMap="bugTypeInfo">
+		select
+		b.bug_type_name,b.bug_type_id, s.config_name,s.status_id
+		from bug_type
+		b
+		left join status_comm s
+		on b.bug_type_status_id=s.status_id
+	</select>
+	<!-- 增加缺陷类型 -->
+	<insert id="bugTypeAdd" parameterType="map">
+		insert into
+		bug_type(bug_type_id,bug_type_name,bug_type_status_id)
+		values(se_bug_type.nextval,#{bug_type_name},#{status_id})
+	</insert>
+</mapper>
+

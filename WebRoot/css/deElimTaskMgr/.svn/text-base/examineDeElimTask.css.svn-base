@@ -1,0 +1,74 @@
+body {
+	padding: 0 0 0 10px;
+	width: 980px;
+	height: auto;
+	background-color: #F7F7F7;
+}
+
+#all {
+	border: 1px solid #666;
+	margin-left: 50px;
+	margin-top: 30px;
+	width: 780px;
+	background-color: #FFF;
+}
+
+.tab_1 {
+	margin-left: 40px;
+	margin-top: 20px;
+	border-collapse: collapse;
+}
+
+.tab_1 td {
+	font-size: 13px;
+	text-align: center;
+	width: 210px;
+	border: 1px solid #CCC;
+}
+
+.tab_1 tr {
+	height: 32px;
+}
+
+.tab_1 .tdodd {
+	padding-right:5px;
+	width: 126px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.tab_2 {
+	margin-top: 20px;
+	margin-left: 40px;
+}
+
+.big {
+	height: 60px;
+}
+
+p {
+	font-size: 13px;
+	font-weight: bold;
+	margin-left: 40px;
+}
+
+.tab_2 {
+	width: 700px;
+}
+
+.bold td {
+	font-weight: bold;
+}
+
+.down {
+	font-size: 13px;
+	margin-left: 40px;
+	height: 55px;
+}
+.down_div {
+	margin-bottom: 25px;
+}
+.ta1 {
+	width: 180px;
+	height: 45px;
+}

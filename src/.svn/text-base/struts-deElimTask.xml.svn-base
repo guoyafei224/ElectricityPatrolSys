@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="DeElimTask_default" namespace="/" extends="struts-default">
+		<action name="*_DeElimTask" class="deElimTaskAction" method="{1}">
+			<result name="saveDeElimTask">jsp/patrolTaskMgr/enactAllot.jsp</result>
+			<result name="queryBeheTaskInfo">jsp/patrolTaskMgr/alterPatrolTask.jsp</result>
+			<result name="queryBeheTaskInfoToCheck">jsp/patrolTaskMgr/checkPatrolTask.jsp</result>
+		</action>
+	</package>
+
+	<package name="DeElimTask_json" namespace="/" extends="json-default">
+		<action name="DeElimTask_*" class="deElimTaskAction" method="{1}">
+			<result name="getAllDeElimMember" type="json">
+				<param name="root">trees</param>
+			</result>
+			<result name="getAllStatus" type="json">
+				<param name="root">statusComm</param>
+			</result>
+			<result name="getBeheTaskByPage" type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="alertStatus" type="json">
+				<param name="root">message</param>
+			</result>
+		</action>
+	</package>
+
+</struts>    

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="bug_default" namespace="/" extends="struts-default">
+	</package>
+	<package name="bug_json" namespace="/" extends="json-default">
+		<action name="bug_*" class="bugAction" method="{1}">
+			<result type="json" name="queryBugByTowerIdAndTaskId">
+				<param name="root">bug</param>
+			</result>
+			<result type="json" name="saveBug">
+				<param name="root">message</param>
+			</result>
+			<result type="json" name="delBug">
+				<param name="root">message</param>
+			</result>
+		</action>
+		<action name="*_Bug" class="bugAction" method="{1}">
+			<result name="getPollTaskOk" type="json">
+				<param name="root">map</param>
+			</result>
+			
+			<result name="getAllBeHeTask" type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+	</package>
+</struts>    

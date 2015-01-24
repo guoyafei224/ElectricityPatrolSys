@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="team.ElectricityPatrolSys.dao.SysUserDao">
+
+	<!-- 查询所有消缺员信息 -->
+	<select id="getAllXiao" resultType="sysUser">
+		select * from sys_user u
+		left join sys_user_role ur
+		on u.user_id=ur.user_id
+		where ur.role_id='role1004'
+		and u.user_status_id='1001'
+	</select>
+
+	<!-- 修改用户角色表的角色信息 -->
+	<update id="updateUserRole" parameterType="map">
+		update sys_user_role
+		ur
+		set ur.role_id=#{role_id}
+		where ur.user_id=#{user_id}
+	</update>
+	<!-- 根据用户id，查询用户信息 -->
+	<select id="getUserById" parameterType="string" resultMap="getAllUser">
+		select
+		u.user_id,u.account,u.user_name,u.password,u.enertdate,u.user_status_id,r.role_id
+		from sys_user u
+		left join sys_user_role r
+		on u.user_id=r.user_id
+		where u.user_id=#{u_id}
+	</select>
+	<!-- 根据用户id，修改用户信息 -->
+	<update id="updateUserById" parameterType="sysUser">
+		update sys_user u
+		set
+		u.account=#{account},
+		u.user_name=#{user_name},
+		u.password=#{password},
+		u.enertdate=#{enertDate},
+		u.user_status_id=#{user_status_id}
+		where u.user_id=#{user_id}
+	</update>
+	<!-- 冻结用户 -->
+	<delete id="freeUser" parameterType="string">
+		update sys_user u set u.user_status_id='1002' where user_id=#{u_id}
+	</delete>
+	<!-- 如果该用户下有角色信息，先删除角色信息 -->
+	<!-- <delete id="delUserRole" parameterType="string"> delete from sys_user_role 
+		where user_id=#{u_id} </delete> -->
+	<!-- 删除用户前，查询该用户角色表下是否有角色 -->
+	<!-- <select id="selectCountRole" parameterType="string" resultType="int"> 
+		select count(*) from sys_user_role where user_id=#{u_id} </select> -->
+	<!-- 添加用户 -->
+	<insert id="addUser" parameterType="map">
+		insert into
+		sys_user(user_id,account,user_name,password,age,phone,enertdate,regdate,user_status_id)
+		values('user'||se_sys_user.nextval,#{account,jdbcType=VARCHAR},#{user_name,jdbcType=VARCHAR},#{password},#{age},#{phone,jdbcType=VARCHAR},#{enertDate},#{regDate},#{status_id})
+		<selectKey keyProperty="user_id" order="AFTER" resultType="string">
+			select 'user'||se_sys_user.currval from dual
+		</selectKey>
+	</insert>
+	<!-- 添加用户，赋予角色 -->
+	<insert id="addUserRole" parameterType="map">
+		insert into
+		sys_user_role(id,user_id,role_id)
+		values(se_sys_user_role.nextval,#{user_id},#{role_id})
+	</insert>
+
+	<!-- 查询总条数 -->
+	<select id="getUserCount" resultType="int">
+		select count(*) from sys_user u
+		where 1=1
+		<if test="user_name!=''and user_name!=null">
+			and u.user_name like '%${user_name}%'
+		</if>
+		<if test="status_id!=''and status_id!=null">
+			and u.user_status_id=#{status_id}
+		</if>
+	</select>
+
+	<!-- 进行关联查询 -->
+	<resultMap type="sysRole" id="showRole">
+		<id property="role_id" column="role_id" />
+		<result property="role_name" column="role_name" />
+		<result property="modifidate" column="modifidate" />
+		<association property="sysUser" javaType="sysUser">
+			<id property="user_id" column="user_id" />
+			<result property="account" column="account" />
+			<result property="user_name" column="user_name" />
+		</association>
+
+		<association property="statusComm" javaType="statusComm">
+			<result property="status_id" column="status_id" />
+			<result property="config_type" column="config_type" />
+			<result property="config_desc" column="config_desc" />
+			<result property="useType" column="useType" />
+			<result property="config_name" column="config_name" />
+		</association>
+		<collection property="sysRoleLimits" ofType="sysRoleLimit"
+			column="role_id">
+			<id property="id" column="id" />
+			<association property="sysLimit" javaType="sysLimit">
+				<id property="limit_id" column="limit_id" />
+				<result property="limit_name" column="limit_name" />
+				<result property="leave" column="leave" />
+				<result property="url" column="url" />
+				<result property="parent_id" column="parent_id" />
+				<result property="isleaf" column="isleaf" />
+				<association property="statusComm" javaType="statusComm">
+					<result property="status_id" column="status_id" />
+					<result property="config_type" column="config_type" />
+					<result property="config_desc" column="config_desc" />
+					<result property="useType" column="useType" />
+					<result property="config_name" column="config_name" />
+				</association>
+			</association>
+		</collection>
+		<collection property="sysUserRoles" ofType="sysUserRole"
+			column="role_id">
+			<id property="id" column="id" />
+			<association property="sysUser" javaType="sysUser">
+
+			</association>
+			<association property="sysRole" javaType="sysRole">
+
+			</association>
+		</collection>
+	</resultMap>
+
+	<select id="login" parameterType="sysUser" resultType="sysUser">
+		select
+		u.user_id,u.account,u.user_name,u.password,u.user_status_id
+		from
+		sys_user u where u.account=#{account} AND
+		u.password=#{password}
+	</select>
+
+
+	<!-- select l.* from sys_user u,sys_user_role ur,sys_role r,sys_role_limit 
+		rl,sys_limit l where u.user_id=ur.user_id and ur.role_id=r.role_id and r.role_id=rl.role_id 
+		and rl.limit_id=l.limit_id and u.account='' and u.password='' 可以登录后查看到所有权限 -->
+
+	<!-- 查询所有巡检员 -->
+	<select id="getAllPatrolMember" resultType="sysUser">
+		select u.*
+		from
+		sys_user u, SYS_USER_ROLE ur
+		where u.user_id = ur.user_id
+		and ur.role_id
+		= 'role1003'
+		and u.user_status_id='1001'
+	</select>
+
+	<!-- 修改个人资料 -->
+	<update id="sysUserUpdate" parameterType="sysUser">
+		update
+		sys_user t set
+		t.age=#{age},
+		t.password=#{password} ,
+		t.phone=#{phone},
+		t.email=#{email},
+		t.sex=#{sex}
+		where
+		user_id=#{user_id}
+	</update>
+
+
+	<!-- 查询所有用户 -->
+	<!-- <resultMap type="sysUser" id="getAllUser"> <id property="id" column="id" 
+		/> <result property="user_name" column="user_name" /> <result property="email" 
+		column="email" /> <result property="lastlogindate" column="lastlogindate" 
+		/> <association property="statusComm" javaType="statusComm"> <result property="status_id" 
+		column="status_id" /> <result property="config_type" column="config_type" 
+		/> <result property="config_desc" column="config_desc" /> <result property="useType" 
+		column="useType" /> <result property="config_name" column="config_name" /> 
+		</association> <collection property="sysUserRoles" ofType="sysUserRole" column="user_id"> 
+		<id property="id" column="id" /> <association property="sysRole" javaType="sysRole"> 
+		<id property="role_id" column="role_id" /> <result property="role_name" column="role_name" 
+		/> </association> </collection> </resultMap> -->
+	<resultMap type="sysUser" id="getAllUser">
+		<id property="user_id" column="user_id" />
+		<result property="user_name" column="user_name" />
+		<result property="email" column="email" />
+		<result property="lastlogindate" column="lastlogindate" />
+		<result property="account" column="account" />
+		<result property="user_name" column="user_name" />
+		<result property="password" column="password" />
+		<result property="user_status_id" column="user_status_id" />
+		<result property="enertDate" column="enertDate" />
+		<association property="statusComm" javaType="statusComm">
+			<result property="status_id" column="status_id" />
+			<result property="config_type" column="config_type" />
+			<result property="config_desc" column="config_desc" />
+			<result property="useType" column="useType" />
+			<result property="config_name" column="config_name" />
+		</association>
+		<association property="sysUserRole" javaType="sysUserRole">
+			<!-- <id property="id" column="id" /> -->
+			<association property="sysRole" javaType="sysRole">
+				<id property="role_id" column="role_id" />
+				<result property="role_name" column="role_name" />
+			</association>
+		</association>
+	</resultMap>
+
+	<!-- 查询所有的用户 -->
+	<select id="getSysUsers" parameterType="map" resultMap="getAllUser">
+		select uu.* from
+		(select rownum rn,u.* from
+		(select
+		u.user_id,u.user_name,u.email,u.lastlogindate,s.config_name,r.role_id,r.role_name,s.status_id
+		from sys_user u left join sys_user_role ur on u.user_id = ur.user_id
+		left
+		join sys_role r on r.role_id = ur.role_id left join status_comm s
+		on
+		s.status_id=u.user_status_id
+		where 1=1
+		<if test="user_name!=''and user_name!=null">
+			and u.user_name like '%${user_name}%'
+		</if>
+		<if test="status_id!=''and status_id!=null">
+			and s.status_id=#{status_id}
+		</if>
+		order by u.user_id
+		) u where rownum <![CDATA[<=]]>#{end})
+		uu
+		where rn>#{start}
+
+		<!-- select uuu.user_id, uuu.user_name, uuu.role_name, uuu.email, uuu.config_name, 
+			uuu.lastlogindate from (select uu.user_id, uu.user_name, uu.role_name, uu.email, 
+			uu.config_name, uu.lastlogindate, rownum rn from (select u.user_id, u.user_name, 
+			r.role_name, u.email, s.config_name, u.lastlogindate from sys_user u left 
+			join sys_user_role ur on u.user_id = ur.user_id left join sys_role r on ur.role_id 
+			= r.role_id left join status_comm s on u.user_status_id = s.status_id) uu 
+			where rownum <![CDATA[<]]>#{end}) uuu where rn > #{start} -->
+	</select>
+
+
+</mapper>

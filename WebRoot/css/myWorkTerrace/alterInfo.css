@@ -1,0 +1,18 @@
+body {
+	padding: 0 0 0 10px;
+	width: 980px;
+	height: auto;
+	background-color: #F7F7F7;
+}
+
+.tab {
+	margin-left: 150px;
+	 font-size:14px;
+}
+table tr{
+	line-height:38px;
+}
+input[type='text'],input[type='password']{
+	width:160px;
+	height:25px;
+}

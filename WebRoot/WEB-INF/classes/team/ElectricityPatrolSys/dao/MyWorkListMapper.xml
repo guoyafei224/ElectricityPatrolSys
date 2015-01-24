@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="team.ElectricityPatrolSys.dao.MyWorkListDao">
+
+	<!-- 查询消缺员的代办列表 -->
+	<select id="byXiaoCount" parameterType="string" resultType="int">
+		select count(*)
+		from behe_task be
+		left join behe_task_user beu
+		on
+		be.task_id=beu.behe_task_id
+		left join bug b
+		on b.bug_id=be.bug_id
+		left
+		join sys_user u
+		on u.user_id=beu.sys_user_id
+		left join tower t
+		on
+		t.tower_id=b.tower_id
+		where beu.sys_user_id=#{u_id}
+		and
+		be.task_status_id='1008'
+	</select>
+	<select id="byXiao" parameterType="string" resultType="mywork">
+		select
+		'消缺任务' as task_type,be.task_id, be.task_name as
+		task_name,be.from_date
+		as from_time,t.tower_id as
+		tower_name,u.user_name as
+		from_user_name,be.des as des
+		from behe_task be
+		left join behe_task_user
+		beu
+		on be.task_id=beu.behe_task_id
+		left join bug b
+		on b.bug_id=be.bug_id
+		left join sys_user u
+		on u.user_id=beu.sys_user_id
+		left join tower t
+		on
+		t.tower_id=b.tower_id
+		where beu.sys_user_id=#{u_id}
+		and
+		be.task_status_id='1008'
+	</select>
+	<!-- 查询巡检员的代办列表 -->
+	<select id="byXunCount" parameterType="string" resultType="int">
+		select count(*)
+		from poll_task po
+		left join poll_task_user pou
+		on
+		po.task_id=pou.poll_task_id
+		left join circuit c
+		on
+		c.circuit_id=po.circuit_id
+		left join sys_user u
+		on
+		u.user_id=po.from_user_id
+		where pou.sys_user_id=#{u_id}
+		and
+		po.task_status_id='1008'
+	</select>
+	<select id="byXun" parameterType="string" resultType="mywork">
+		select
+		'巡检任务' as task_type,po.task_name as task_name,po.from_date as
+		from_time,po.des as des,
+		u.user_name as from_user_name,c.circuit_name
+		circuit_name,c.start_tower_id as
+		start_tower_id,
+		c.end_tower_id as
+		end_tower_id
+		from poll_task po
+		left join poll_task_user pou
+		on
+		po.task_id=pou.poll_task_id
+		left join circuit c
+		on
+		c.circuit_id=po.circuit_id
+		left join sys_user u
+		on
+		u.user_id=po.from_user_id
+		where pou.sys_user_id=#{u_id}
+		and
+		po.task_status_id='1008'
+	</select>
+	<!-- 查询线路管理员的代办列表 -->
+	<select id="byXianCountBehe" parameterType="string" resultType="int">
+		select count(*)
+		from behe_task be
+		where be.task_status_id='1007' OR be.task_status_id='1020'
+		and be.from_user_id=#{u_id}
+	</select>
+	<select id="byXianCountPoll" parameterType="string" resultType="int">
+		select count(*)
+		from poll_task po
+		where po.task_status_id='1007' OR po.task_status_id='1020'
+	    and po.from_user_id=#{u_id}
+		
+		
+	</select>
+	<select id="byXianBehe" parameterType="string" resultType="mywork">
+		select
+		'消缺任务' as task_type, be.task_name as task_name,be.from_date as
+		from_time,be.des as des
+		from behe_task be
+		where be.task_status_id='1007'
+		OR be.task_status_id='1020'
+		and be.from_user_id=#{u_id}
+		
+	</select>
+	<select id="byXianPoll" parameterType="string" resultType="mywork">
+		select
+		'巡检任务' as task_type,po.task_name as task_name,po.from_date as
+		from_time,po.des as des
+		from poll_task po
+		where po.task_status_id='1007'
+		or po.task_status_id='1020'
+		and po.from_user_id=#{u_id}
+		
+	</select>
+	<!-- 查询系统管理员的代办列表 -->
+	<select id="byGuanCountBehe" resultType="int">
+		select count(*)
+		from behe_task be
+		where be.task_status_id='1007' OR be.task_status_id='1020'
+	</select>
+	<select id="byGuanCountPoll" resultType="int">
+		select count(*)
+		from poll_task po
+		where po.task_status_id='1007' OR po.task_status_id='1020'
+	</select>
+	<select id="byGuanBehe" resultType="mywork">
+		select
+		'消缺任务' as task_type, be.task_name as task_name,be.from_date as
+		from_time,be.des as des
+		from behe_task be
+		where be.task_status_id='1007'
+		OR be.task_status_id='1020'
+		
+	</select>
+	<select id="byGuanPoll" resultType="mywork">
+		select
+		'巡检任务' as task_type,po.task_name as task_name,po.from_date as
+		from_time,po.des as des
+		from poll_task po
+		where po.task_status_id='1007'
+		or po.task_status_id='1020'
+		
+	</select>
+
+</mapper>

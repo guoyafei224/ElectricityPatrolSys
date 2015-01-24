@@ -1,0 +1,51 @@
+body {
+	padding: 0 0 0 10px;
+	width: 980px;
+	height: auto;
+	background-color: #F7F7F7;
+}
+
+.hint {
+	margin-left: 15px;
+	font-family: Î¢ÈíÑÅºÚ;
+	font-size: 14px;
+}
+
+.minBut {
+	width: 60px;
+	height: 25px;
+	margin-left:30px;
+}
+.inText {
+	width: 180px;
+	height: 25px;
+}
+
+tr {
+	height: 35px;
+}
+
+select {
+	width: 90px;
+	height: 25px;
+}
+
+td {
+	font-size: 14px;
+}
+
+.empty {
+	margin-top: 15px;
+}
+#showdia1{
+	padding-top:20px;
+	margin:0px auto;
+	line-height:45px;
+	padding-left:60px;
+}
+#showdia2{
+	padding-top:20px;
+	margin:0px auto;
+	line-height:45px;
+	padding-left:60px;
+}

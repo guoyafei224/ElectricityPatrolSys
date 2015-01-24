@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+
+	<package name="doDeElimTask_default" namespace="/" extends="struts-default">
+		<!-- 根据id查询消缺任务的详细信息 -->
+		<action name="getBeHeTaskById" class="doDeElimTaskAction" method="getBeHeTaskById">
+			<result name="success">jsp/deElimTaskMgr/checkdeElimTask.jsp</result>
+			<result name="input">jsp/deElimTaskMgr/checkdeElimTask.jsp</result>
+		</action>
+		<!-- 添加消缺任务 -->
+		<action name="addBeHeTask" class="doDeElimTaskAction" method="addBeHeTask">
+			<result name="success">jsp/deElimTaskMgr/enactAllot.jsp</result>
+			<result name="input">/404.jsp</result>
+		</action>
+		<!-- 根据id查询消缺任务的详细信息 -->
+		<action name="getBeHeTaskByIdForUpdate" class="doDeElimTaskAction" method="getBeHeTaskById">
+			<result name="success">jsp/deElimTaskMgr/alterdeElimTask.jsp</result>
+			<result name="input">jsp/deElimTaskMgr/alterdeElimTask.jsp</result>
+		</action>
+	</package>
+
+	<!-- json -->
+	<package name="doDeElimTask_json" namespace="/" extends="json-default">
+		<!-- 查询显示消缺任务 -->
+		<action name="getBeheTask" class="doDeElimTaskAction" method="getBeheTask">
+			<result type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 根据任务id，查询所有的缺陷 -->
+		<action name="getBugById" class="doDeElimTaskAction" method="getBugById">
+			<result type="json">
+				<param name="root">bugs</param>
+			</result>
+		</action>
+		<!-- 根据id，查询所有消缺员 -->
+		<action name="getBeheUser" class="doDeElimTaskAction" method="getBeheUser">
+			<result type="json">
+				<param name="root">beHeUsers</param>
+			</result>
+		</action>
+		<!--查询所有未分配缺陷-->
+		<action name="getBeHeTaskWei" class="doDeElimTaskAction" method="getBeHeTaskWei">
+			<result type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+		<!-- 查询所有的消缺员 -->
+		<action name="getAllXiao" class="sysUserAction" method="getAllXiao">
+			<result type="json">
+				<param name="root">trees</param>
+			</result>
+		</action>
+		<!-- 点击取消任务 -->
+		<action name="cancelTask" class="doDeElimTaskAction" method="cancelTask">
+			<result type="json">
+				<param name="root">message</param>
+			</result>
+		</action>
+		<!-- 修改时获得所有未分配缺陷，和该缺陷已经拥有的缺陷 -->
+		<action name="getWeiAndYiBeHeTask" class="doDeElimTaskAction" method="getWeiAndYiBeHeTask">
+			<result type="json">
+				<param name="root">map</param>
+			</result>
+		</action>
+		
+	</package>
+
+</struts>    

@@ -1,0 +1,39 @@
+body {
+	padding: 0 0 0 10px;
+	width: 980px;
+	height: auto;
+	background-color: #F7F7F7;
+}
+
+.hint {
+	margin-left: 30px;
+	font-family: Î¢ÈíÑÅºÚ;
+	font-size: 14px;
+}
+*{
+font-size:14px;}
+	.td_odd{
+	padding-left:60px;
+	font-weight: bold;
+	}
+.td{
+  padding_left:100px;
+}	
+.inText {
+	width: 180px;
+	height: 25px;
+}
+
+.date{
+    width:80px;
+    height:25px;
+}
+tr{
+height:50px;
+}
+
+li{
+	margin:2px;
+	width:150px;
+	margin-left:20px;
+}

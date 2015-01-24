@@ -1,0 +1,31 @@
+body {
+	padding: 0 0 0 10px;
+	width: 980px;
+	height: auto;
+	background-color: #F7F7F7;
+}
+
+#add tr{
+	height:40px;
+}
+
+#add{
+	padding-left:20px;
+}
+.hint {
+	margin-left: 30px;
+	font-family: Î¢ÈíÑÅºÚ;
+	font-size: 14px;
+}
+
+.up {
+	margin-left: 15px;
+}
+
+.empty {
+	margin-top: 15px;
+}
+
+.left {
+	margin-left: 15px
+}

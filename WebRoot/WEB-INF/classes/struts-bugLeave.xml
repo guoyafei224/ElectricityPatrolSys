@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="bugLeave_json" namespace="/" extends="json-default">
+		<action name="bugLeave_*" class="bugLeaveAction" method="{1}">
+			<result type="json" name="getAllBugLeave">
+				<param name="root">bugLeaves</param>
+			</result>
+		</action>
+	</package>
+</struts>    

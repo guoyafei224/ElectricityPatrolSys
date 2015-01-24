@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/t14/!svn/ver/1934/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service
+END
+BugLeaveBiz.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/1839/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/BugLeaveBiz.java
+END
+SysLogService.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/SysLogService.java
+END
+SysUserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/t14/!svn/ver/1856/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/SysUserService.java
+END
+TowerService.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/928/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/TowerService.java
+END
+CircuitService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/t14/!svn/ver/1462/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/CircuitService.java
+END
+MyWorkListService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/MyWorkListService.java
+END
+DoDeElimTaskService.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/t14/!svn/ver/1873/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/DoDeElimTaskService.java
+END
+BugTypeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/t14/!svn/ver/1272/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/BugTypeService.java
+END
+StatusCommService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/t14/!svn/ver/1393/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/StatusCommService.java
+END
+SysLimitService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/t14/!svn/ver/1546/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/SysLimitService.java
+END
+DeElimTaskService.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/t14/!svn/ver/1553/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/DeElimTaskService.java
+END
+SysRoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/t14/!svn/ver/1546/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/SysRoleService.java
+END
+PollTaskService.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/t14/!svn/ver/1925/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/PollTaskService.java
+END
+BugService.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/t14/!svn/ver/1925/ElectricityPatrolSys/src/team/ElectricityPatrolSys/service/BugService.java
+END

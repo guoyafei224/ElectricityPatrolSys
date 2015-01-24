@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.ElectricityPatrolSys.dao.CircuitDao">
+	<resultMap type="circuit" id="mapCircuit">
+		<id property="circuit_id" column="circuit_id" />
+		<result property="circuit_name" column="circuit_name" />
+		<result property="circuit_length" column="circuit_length" />
+		<result property="hui_length" column="hui_length" />
+		<result property="start_tower_id" column="start_tower_id" />
+		<result property="end_tower_id" column="end_tower_id" />
+		<result property="fund_num" column="fund_num" />
+		<result property="des" column="des" />
+		<result property="isStoppage" column="isStoppage" />
+		<association property="runstatusComm" javaType="statusComm">
+			<result property="status_id" column="run_status_id" />
+			<result property="config_type" column="config_type" />
+			<result property="config_desc" column="config_desc" />
+			<result property="useType" column="useType" />
+			<result property="config_name" column="config_name" />
+		</association>
+		<association property="usestatusComm" javaType="statusComm">
+			<result property="status_id" column="use_status_id" />
+			<result property="config_type" column="use_config_type" />
+			<result property="config_desc" column="use_config_desc" />
+			<result property="config_name" column="use_config_name" />
+		</association>
+	</resultMap>
+	<select id="getAllCircuit" resultType="circuit" resultMap="mapCircuit">
+		select *
+		from CIRCUIT t
+		left join status_comm s
+		on s.status_id =
+		t.run_status_id
+	</select>
+	<select id="getAllCircuits" resultType="circuit" resultMap="mapCircuit">
+		select * from (select rownum rn,z.*,sc.config_name use_config_name,
+		sc.config_type use_config_type,
+		sc.config_desc use_config_desc
+		from
+		(select t.*,s.*
+		from CIRCUIT t
+		left join
+		status_comm
+		s
+		on s.status_id=
+		t.run_status_id)z
+		left join status_comm sc
+		on
+		sc.status_id=z.use_status_id
+		where 1=1
+		<if test="circuit_id!=null and circuit_id!=''">
+			and circuit_id=#{circuit_id}
+		</if>
+		<if test="status_id!=null and status_id!=''">
+			and
+			use_status_id=#{status_id}
+		</if>)
+		where rn <![CDATA[<=]]>
+		#{end} and rn > #{start}
+
+	</select>
+	<select id="getCircuitName" resultType="circuit">
+		select
+		circuit_name
+		from
+		CIRCUIT
+	</select>
+	<select id="getCircuit" resultType="int" parameterType="map">
+		select count(t.circuit_id)
+		from CIRCUIT t
+		left join
+		status_comm
+		s
+		on
+		s.status_id=
+		t.use_status_id
+		where 1=1
+		<if test="circuit_id!=null and circuit_id!=''">
+			and circuit_id=#{circuit_id}
+		</if>
+		<if test="status_id!=null and status_id!=''">
+			and use_status_id=#{status_id}
+		</if>
+	</select>
+	<insert id="addCircuit" parameterType="circuit">
+		insert into CIRCUIT
+		values('cir'||se_circuit.nextval,#{circuit_name},#{circuit_length},#{hui_length},#{start_tower_id},#{end_tower_id},#{fund_num},#{des},#{isStoppage},#{runstatusComm.status_id},#{usestatusComm.status_id})
+	</insert>
+
+	<select id="getCircuitById" resultMap="mapCircuit"
+		parameterType="String">
+		select *
+		from CIRCUIT t
+		left join status_comm s
+		on
+		s.status_id =
+		t.run_status_id
+		where circuit_id=#{circuit_id}
+	</select>
+	<update id="updateCircuit" parameterType="circuit">
+		update circuit set
+		circuit_name=#{circuit_name}
+		,circuit_length=#{circuit_length}
+		,hui_length=#{hui_length}
+		,start_tower_id=#{start_tower_id}
+		,end_tower_id=#{end_tower_id}
+		,fund_num=#{fund_num},des=#{des}
+		where
+		circuit_id=#{circuit_id}
+	</update>
+	<delete id="delCircuit">
+		delete Circuit where circuit_id=#{circuit_id}
+	</delete>
+	<update id="alterStatus" parameterType="circuit">
+		update circuit set
+		use_status_id=#{usestatusComm.status_id}
+		where circuit_id=#{circuit_id}
+	</update>
+</mapper>

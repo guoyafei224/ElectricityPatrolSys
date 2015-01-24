@@ -1,0 +1,56 @@
+body {
+	padding: 0 0 0 10px;
+	width: 980px;
+	height: auto;
+	background-color: #F7F7F7;
+}
+
+tr {
+	height: 35px;
+	font-size: 14px;
+}
+
+.tdodd {
+	font-weight: bold;
+}
+
+input {
+	width: 200px;
+	height: 25px;
+}
+
+select {
+	width: 200px;
+	height: 25px;
+}
+
+.tab {
+	margin-top: 20px;
+	margin-left: 130px;
+}
+
+.ta1 {
+	width: 200px;
+	height: 60px;
+}
+
+.ta2 {
+	width: 200px;
+	height: 90px;
+}
+
+.tree_img {
+	margin-top: 60px;
+	margin-left: 182px;
+}
+
+.label {
+	color: #999;
+}
+
+#serach {
+	width: 20px;
+	height: 20px;
+	margin-bottom: 15px;
+	margin-left: 5px;
+}

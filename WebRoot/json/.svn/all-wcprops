@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/t14/!svn/ver/1549/ElectricityPatrolSys/WebRoot/json
+END
+bugQuery.json
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/bugQuery.json
+END
+bugLevelAffirm.json
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/t14/!svn/ver/1549/ElectricityPatrolSys/WebRoot/json/bugLevelAffirm.json
+END
+pexecuteReceipt.json
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/t14/!svn/ver/1291/ElectricityPatrolSys/WebRoot/json/pexecuteReceipt.json
+END
+waitList.json
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/t14/!svn/ver/42/ElectricityPatrolSys/WebRoot/json/waitList.json
+END
+circuitMgr.json
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/t14/!svn/ver/79/ElectricityPatrolSys/WebRoot/json/circuitMgr.json
+END
+sysConfig.json
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/sysConfig.json
+END
+towerMgr.json
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/t14/!svn/ver/76/ElectricityPatrolSys/WebRoot/json/towerMgr.json
+END
+userMgr.json
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/userMgr.json
+END
+penactAllot.json
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/penactAllot.json
+END
+alterReceiptEn.json
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/alterReceiptEn.json
+END
+alterdeElimTask.json
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/alterdeElimTask.json
+END
+bugTypeSetMyJsp.json
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/t14/!svn/ver/41/ElectricityPatrolSys/WebRoot/json/bugTypeSetMyJsp.json
+END
+dexecuteReceipt.json
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/dexecuteReceipt.json
+END
+roleMgr.json
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/roleMgr.json
+END
+etree1or2.json
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/etree1or2.json
+END
+denactAllot.json
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/denactAllot.json
+END
+deElimRecord.json
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/t14/!svn/ver/76/ElectricityPatrolSys/WebRoot/json/deElimRecord.json
+END
+patrolRecord.json
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/t14/!svn/ver/76/ElectricityPatrolSys/WebRoot/json/patrolRecord.json
+END
+deElimQuery.json
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/deElimQuery.json
+END
+roleJuriConfig.json
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/roleJuriConfig.json
+END
+alterdeElimTask_2.json
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/alterdeElimTask_2.json
+END
+checkPatrolTask.json
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/t14/!svn/ver/19/ElectricityPatrolSys/WebRoot/json/checkPatrolTask.json
+END

@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/t14/!svn/ver/1873/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity
+END
+BeheTaskUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/1854/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/BeheTaskUser.java
+END
+PollTaskUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/PollTaskUser.java
+END
+SysUserRole.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/SysUserRole.java
+END
+BugType.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/BugType.java
+END
+SysLimit.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/SysLimit.java
+END
+Tower.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/Tower.java
+END
+Circuit.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/Circuit.java
+END
+BeHeTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/t14/!svn/ver/1873/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/BeHeTask.java
+END
+PollTask.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/t14/!svn/ver/1838/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/PollTask.java
+END
+SysRole.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/SysRole.java
+END
+BugLeave.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/BugLeave.java
+END
+StatusComm.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/StatusComm.java
+END
+MyWorkList.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/t14/!svn/ver/1626/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/MyWorkList.java
+END
+SysRoleLimit.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/SysRoleLimit.java
+END
+PollTask_s.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/PollTask_s.java
+END
+SysUser.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/t14/!svn/ver/1612/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/SysUser.java
+END
+SysLog.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/t14/!svn/ver/1709/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/SysLog.java
+END
+Bug.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/t14/!svn/ver/1873/ElectricityPatrolSys/src/team/ElectricityPatrolSys/entity/Bug.java
+END

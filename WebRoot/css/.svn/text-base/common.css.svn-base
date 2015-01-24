@@ -1,0 +1,61 @@
+/*CSS FILE*/
+* {
+	list-style: none;
+	text-decoration: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#container {
+	width: 980px;
+	margin: 0px auto;
+	background: #F5F5F5;
+}
+
+#top {
+	width: 980px;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #BFBFBF;
+	font-family: Î¢ÈíÑÅºÚ;
+	font-size: 14px;
+}
+
+#top ul {
+	padding-left: 30px;
+}
+
+#top ul li {
+	width: 55px;
+	float: left;
+	font-size: smaller;
+	text-align: center;
+}
+
+.searchTb {
+	margin-top: 25px;
+	margin-left: 30px;
+}
+
+.searchTb th {
+	font-weight: bold;
+	padding: 10px;
+}
+
+.searchTb input {
+	height: 25px;
+	line-height: 25px;
+}
+
+.formTable {
+	width: 100%;
+}
+
+.formTable tr {
+	height: 35px;
+	line-height: 35px;
+}
+
+.formTable {
+	width: 100%;
+}

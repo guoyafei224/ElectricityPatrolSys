@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="team.ElectricityPatrolSys.dao.StatusCommDao">
+
+
+	<!-- 添加状态 -->
+	<insert id="addStruts" parameterType="statusComm">
+		insert into status_comm c
+		(status_id,config_type,config_desc,usetype,config_name)
+		values(se_status_comm.nextval,#{config_type},#{config_desc},#{useType},#{config_name})
+	</insert>
+	<!-- 修改状态 -->
+	<update id="updateStruts" parameterType="statusComm">
+		update status_comm c
+		set
+		c.config_type=#{config_type},
+		c.config_desc=#{config_desc},
+		c.config_name=#{config_name},
+		c.usetype=#{useType}
+		where
+		c.status_id=#{status_id}
+	</update>
+	<!-- 查询不重复的配置类型 -->
+	<select id="getConfigType" resultType="statusComm">
+		select distinct
+		c.config_type from status_comm c
+	</select>
+	<!-- 冻结状态，根据id -->
+	<update id="updateStrutsById" parameterType="int">
+		update status_comm c
+		set c.usetype=0 where c.status_id=#{s_id}
+	</update>
+
+	<!-- 根据类型，查询所属状态 -->
+	<select id="getStatusByids" parameterType="String" resultType="statusComm">
+		select s.status_id,s.config_type,s.config_name from status_comm s
+		where s.config_type=#{config_type}
+	</select>
+
+	<!-- 查询所有的状态类别 -->
+	<select id="getStatus" resultType="statusComm" parameterType="map">
+		select ss.* from
+		(select s.*,rownum rn from
+		(select * from status_comm )
+		s where rownum <![CDATA[<=]]>#{end})
+		ss
+		where rn>#{start}
+	</select>
+
+	<!-- 查询总条数 -->
+	<select id="getCount" resultType="int">
+		select count(*) from
+		status_comm
+	</select>
+</mapper>

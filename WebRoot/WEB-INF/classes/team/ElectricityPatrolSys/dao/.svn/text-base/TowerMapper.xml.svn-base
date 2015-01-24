@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="team.ElectricityPatrolSys.dao.TowerDao">
+
+	<!-- 进行关联查询 -->
+	<resultMap type="tower" id="tower">
+		<id property="tower_id" column="tower_id" />
+		<result property="good_proc" column="good_proc" />
+		<association property="circuit" javaType="circuit">
+			<id property="circuit_id" column="circuit_id" />
+			<result property="circuit_name" column="circuit_name" />
+		</association>
+		<association property="statusComm" javaType="statusComm">
+			<id property="status_id" column="status_id" />
+			<result property="config_name" column="config_name" />
+		</association>
+	</resultMap>
+
+
+	<!-- 查询杆塔全部信息 -->
+	<select id="getAllTower" resultMap="tower" parameterType="map">
+		select
+		* from
+		(select rownum rn,
+		tr.tower_id,tr.circuit_id,tr.circuit_name,tr.config_name
+		from (select
+		t.good_proc,
+		t.tower_id,c.circuit_id,
+		c.circuit_name,sc.status_id,sc.config_name
+		from tower t
+		left join
+		circuit c
+		on c.circuit_id = t.circuit_id
+		left join
+		status_comm sc
+		on
+		sc.status_id = t.tower_status_id order by t.tower_id)
+		tr where rownum  <![CDATA[<=]]>#{end}
+		)
+		where rn > #{start}
+	</select>
+
+
+
+	<!-- 得到总条数 -->
+	<select id="getTowerSum" resultType="int">
+		select count(*)sum from
+		tower
+	</select>
+
+	<select resultMap="tower" id="getAllTowers">
+		select*from tower
+	</select>
+
+	<select id="queryTowerInfoById" resultMap="tower" parameterType="String">
+		select
+		tr.tower_id,tr.circuit_id,tr.circuit_name,tr.good_proc,tr.config_name
+		from (select t.good_proc,
+		t.tower_id,c.circuit_id,
+		c.circuit_name,sc.status_id,sc.config_name
+		from tower t
+		left join
+		circuit c
+		on c.circuit_id = t.circuit_id
+		left join
+		status_comm sc
+		on
+		sc.status_id = t.tower_status_id order by t.tower_id) tr
+		where
+		tr.tower_id=#{tower_id}
+	</select>
+
+	<select id="getTowerByCricuitId" parameterType="String"
+		resultMap="tower">
+		select
+		tr.tower_id,tr.circuit_id,tr.circuit_name,tr.config_name
+		from (select
+		t.tower_id,c.circuit_id,
+		c.circuit_name,sc.status_id,sc.config_name
+		from tower t
+		left join circuit c
+		on c.circuit_id = t.circuit_id
+		left join
+		status_comm sc
+		on sc.status_id = t.tower_status_id order by t.tower_id)
+		tr
+		where circuit_id=#{cId}
+	</select>
+</mapper>

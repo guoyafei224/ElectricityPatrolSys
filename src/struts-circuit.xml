@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="Circuit_default" namespace="/" extends="struts-default">
+		<action name="*_Circuit" class="circuitAction" method="{1}">
+			<result name="addCircuit">jsp/circuitMgr/circuitMgr.jsp</result>
+			<result name="getCircuitById">jsp/circuitMgr/addCircuit.jsp</result>
+			<result name="updateCircuit">jsp/circuitMgr/circuitMgr.jsp</result>
+			<result name="delCircuit">jsp/circuitMgr/circuitMgr.jsp</result>
+		</action>
+	</package>
+
+	<package name="Circuit_json" namespace="/" extends="json-default">
+		<action name="Circuit_*" class="circuitAction" method="{1}">
+			<result name="getAllCircuit" type="json">
+				<param name="root">circuits</param>
+			</result>
+			<result name="getAllTower" type="json">
+				<param name="root">trees</param>
+			</result>
+			<result name="querycircuit" type="json">
+				<param name="root">statusComm</param>
+			</result>
+			<result name="getAllCircuits" type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="alterStatus" type="json">
+				<param name="root">circuit</param>
+			</result> 
+		</action>
+	</package>
+
+</struts>    

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- 添加状态 -->
+		<action name="addStruts" class="statusCommAction" method="addStruts">
+			<result>jsp/sysMgr/sysConfig.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 修改状态 -->
+		<action name="updateStruts" class="statusCommAction" method="updateStruts">
+			<result>jsp/sysMgr/sysConfig.jsp</result>
+			<result name="input">404.jsp</result>
+		</action>
+	</package>
+
+	<package name="json" namespace="/" extends="json-default">
+
+		<action name="getStatusByid" class="statusCommAction" method="getStatusByid">
+			<result type="json">
+				<param name="root">statusComms</param>
+			</result>
+		</action>
+		<!-- 查询所有的状态 -->
+		<action name="getStatus" class="statusCommAction" method="getStatus">
+			<result type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+
+		<!-- 根据状态id，将该状态冻结 -->
+		<action name="updateStatusById" class="statusCommAction"
+			method="updateStatusById">
+			<result type="json">
+				<param name="root">message</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+		<!-- 查询出不重复的配置类型 -->
+		<action name="getConfigType" class="statusCommAction" method="getConfigType">
+			<result type="json">
+				<param name="root">statusComms</param>
+			</result>
+			<result name="input">404.jsp</result>
+		</action>
+	</package>
+
+
+
+	<include file="struts-bugLeave.xml"></include>
+	<include file="struts-bugType.xml"></include>
+	<include file="struts-sysMgr.xml"></include>
+	<include file="struts-patrolTask.xml"></include>
+	<include file="struts-tower.xml"></include>
+	<include file="struts-circuit.xml"></include>
+	<include file="struts-bug.xml"></include>
+	<include file="struts-deElimTask.xml"></include>
+	<include file="struts-doDeElimTask.xml"></include>
+</struts>    

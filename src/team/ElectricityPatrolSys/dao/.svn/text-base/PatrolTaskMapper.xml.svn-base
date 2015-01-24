@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.ElectricityPatrolSys.dao.PollTaskDao">
+	<!-- 巡检任务实体类映射 -->
+	<resultMap type="pollTask" id="patrolMap">
+		<id property="task_id" column="task_id" />
+		<result property="task_name" column="task_name" />
+		<result property="ok_time" column="ok_time" />
+		<result property="from_date" column="from_date" />
+		<result property="istrue" column="istrue" />
+		<result property="des" column="des" />
+		<association property="fromSysUser" javaType="sysUser">
+			<result property="user_id" column="from_user_id" />
+			<result property="account" column="from_account" />
+			<result property="user_name" column="from_user_name" />
+		</association>
+		<!-- <association property="toSysUser" javaType="sysUser"> <result property="user_id" 
+			column="to_user_id" /> <result property="account" column="to_account" /> 
+			<result property="user_name" column="to_user_name" /> </association> -->
+		<association property="statusComm" javaType="statusComm">
+			<result property="status_id" column="status_id" />
+			<result property="config_type" column="config_type" />
+			<result property="config_desc" column="config_desc" />
+			<result property="useType" column="useType" />
+			<result property="config_name" column="config_name" />
+		</association>
+		<association property="circuit" javaType="circuit">
+			<result property="circuit_id" column="circuit_id" />
+			<result property="circuit_name" column="circuit_name" />
+			<result property="start_tower_id" column="start_tower_id" />
+			<result property="circuit_length" column="circuit_length" />
+			<result property="hui_length" column="hui_length" />
+			<result property="end_tower_id" column="end_tower_id" />
+			<result property="fund_num" column="fund_num" />
+			<result property="des" column="des" />
+			<result property="isStoppage" column="isStoppage" />
+			<!-- <association property="runstatusComm" javaType="statusComm"> <id 
+				property="status_id" column="status_id" /> <result property="config_type" 
+				column="config_type" /> <result property="config_desc" column="config_desc" 
+				/> <result property="useType" column="useType" /> <result property="config_name" 
+				column="config_name" /> </association> <association property="usestatusComm" 
+				javaType="statusComm"> <id property="status_id" column="status_id" /> <result 
+				property="config_type" column="config_type" /> <result property="config_desc" 
+				column="config_desc" /> <result property="useType" column="useType" /> <result 
+				property="config_name" column="config_name" /> </association> -->
+		</association>
+	</resultMap>
+
+	<!-- 查询任务编号 -->
+	<select id="getPollTaskId" resultType="String">
+		select
+		'RW'||se_poll_task.nextval from dual
+	</select>
+
+	<!-- 新添加任务 -->
+	<insert id="savePatrolTask" parameterType="pollTask">
+		insert into POLL_TASK
+		values(#{task_id},#{task_name},#{circuit.circuit_id},#{fromSysUser.user_id},#{from_date},#{statusComm.status_id},0,NULL,#{des})
+	</insert>
+	<insert id="savePollTaskUser" parameterType="ptu">
+		insert into
+		poll_task_user
+		values(ptu_user.nextval,#{poll_task_id},#{sys_user_id})
+	</insert>
+	<!-- 分页查询巡检任务 -->
+	<!-- 最近时间排序 distinct去重 -->
+	<select id="getPollTaskByPage" parameterType="map" resultType="pollTask"
+		resultMap="patrolMap">
+		select *
+		from (select rownum rn,
+		t.task_id,
+		t.des,
+		t.task_name,
+		t.from_date,
+		t.istrue,
+		t.ok_time,
+		c.circuit_id,
+		c.circuit_name,
+		c.start_tower_id,
+		c.end_tower_id,
+		s.*,
+		u.user_id from_user_id,
+		u.account from_account,
+		u.user_name from_user_name
+		from POLL_TASK t
+		left join circuit c
+		on
+		t.circuit_id = c.circuit_id
+		left
+		join sys_user u
+		on t.from_user_id =
+		u.user_id
+		left join status_comm s
+		on
+		s.status_id = t.task_status_id where
+		1=1
+		<if test="pollTask.task_id!='' and pollTask.task_id!=null">
+			and t.task_id=#{pollTask.task_id}
+		</if>
+		<if test="pollTask.circuit!=null and pollTask.circuit.circuit_id!=''">
+			and c.circuit_id=#{pollTask.circuit.circuit_id}
+		</if>
+		<if test="pollTask.statusComm!=null and pollTask.statusComm.status_id!=''">
+			and s.status_id=#{pollTask.statusComm.status_id}
+		</if>
+		<if
+			test="pollTask.fromSysUser!=null and pollTask.fromSysUser.user_name!=''">
+			and u.user_name=#{pollTask.fromSysUser.user_name}
+		</if>
+		<if test="pollTask.from_date!='' and pollTask.from_date!=null">
+			and t.from_date between #{pollTask.from_date} and
+			#{pollTask.ok_time}
+		</if>
+		order by t.from_date desc)
+		where rn <![CDATA[<=]]>
+		#{end}
+		and rn > #{start}
+	</select>
+	<select id="queryPollTaskInfo" parameterType="String"
+		resultType="pollTask" resultMap="patrolMap">
+		select
+		t.task_id,
+		t.task_name,
+		t.from_date,
+		t.istrue,
+		t.des,
+		t.from_user_id,
+		t.ok_time,
+		c.circuit_id,
+		c.circuit_name,
+		c.start_tower_id,
+		c.end_tower_id,
+		s.*,
+		u.user_id
+		from_user_id,
+		u.account from_account,
+		u.user_name from_user_name
+		from
+		POLL_TASK t
+		left join circuit c
+		on t.circuit_id = c.circuit_id
+		left join
+		sys_user u
+		on t.from_user_id = u.user_id
+		left join status_comm s
+		on
+		s.status_id =
+		t.task_status_id
+		where t.task_id = #{task_id}
+	</select>
+
+	<!-- 查询任务总条数 -->
+	<select id="getPollTaskSize" resultType="int" parameterType="pollTask">
+		select count(t.task_id)
+		from POLL_TASK t
+		left join circuit c
+		on
+		t.circuit_id = c.circuit_id
+		left
+		join sys_user u
+		on t.from_user_id =
+		u.user_id
+		left join status_comm s
+		on
+		s.status_id = t.task_status_id where
+		1=1
+		<if test="task_id!='' and task_id!=null">
+			and t.task_id=#{task_id}
+		</if>
+		<if test="circuit!=null and circuit.circuit_id!=''">
+			and c.circuit_id=#{circuit.circuit_id}
+		</if>
+		<if test="statusComm!=null and statusComm.status_id!=''">
+			and s.status_id=#{statusComm.status_id}
+		</if>
+		<if test="fromSysUser!=null and fromSysUser.user_name!=''">
+			and u.user_name=#{fromSysUser.user_name}
+		</if>
+		<if test="from_date!='' and from_date!=null">
+			and t.from_date between #{from_date} and
+			#{ok_time}
+		</if>
+	</select>
+	<!-- 取消任务 -->
+	<update id="alertStatus" parameterType="String">
+		update POLL_TASK set
+		ISTRUE=1 where task_id=#{task_id}
+	</update>
+
+	<!-- 查询分配的巡检员 -->
+	<select id="getTaskUser" parameterType="String" resultType="sysUser">
+		select s.user_id,s.user_name from POLL_TASK_USER t
+		left join sys_user s
+		on s.user_id=t.sys_user_id where
+		T.POLL_TASK_ID=#{task_id}
+	</select>
+
+	<!-- 修改巡检任务状态为执行 -->
+	<update id="alterTaskStatus" parameterType="String">
+		update poll_task set
+		task_status_id=1009 where task_id=#{task_id}
+	</update>
+	
+	<!-- 修改任务信息 -->
+	<update id="updateTask" parameterType="pollTask">
+		update poll_task set
+		task_name=#{task_name},circuit_id=#{circuit.circuit_id},from_user_id=#{fromSysUser.user_id},from_date=#{from_date},des=#{des}
+		where task_id=#{task_id}
+	</update>
+	
+	<!-- 删除分配的巡检员 -->
+	<delete id="delTaskUser" parameterType="String">
+		delete poll_task_user where poll_task_id=#{message}
+	</delete>
+	
+	<!-- 修改任务状态为已完成 -->
+	<update id="alterStatusIsOk" parameterType="String">
+		update poll_task set task_status_id=1010 where task_id=#{task_id}
+	</update>
+</mapper>

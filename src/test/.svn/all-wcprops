@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/t14/!svn/ver/1430/ElectricityPatrolSys/src/test
+END
+BugTypeTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/t14/!svn/ver/1430/ElectricityPatrolSys/src/test/BugTypeTest.java
+END
+ConnTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/t14/!svn/ver/28/ElectricityPatrolSys/src/test/ConnTest.java
+END
+getLimitBylidTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/t14/!svn/ver/123/ElectricityPatrolSys/src/test/getLimitBylidTest.java
+END
+limitTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/t14/!svn/ver/28/ElectricityPatrolSys/src/test/limitTest.java
+END
+CircuitTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/t14/!svn/ver/1151/ElectricityPatrolSys/src/test/CircuitTest.java
+END
+UpdateTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/t14/!svn/ver/666/ElectricityPatrolSys/src/test/UpdateTest.java
+END
+PollTaskTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/t14/!svn/ver/1055/ElectricityPatrolSys/src/test/PollTaskTest.java
+END
+ConvertTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/t14/!svn/ver/368/ElectricityPatrolSys/src/test/ConvertTest.java
+END
+getRolesByUidTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/t14/!svn/ver/123/ElectricityPatrolSys/src/test/getRolesByUidTest.java
+END

@@ -1,0 +1,42 @@
+body {
+	padding: 0 0 0 10px;
+	width: 980px;
+	height: auto;
+	background-color: #F7F7F7;
+}
+
+.up {
+	margin-left: 15px;
+}
+
+
+.time {
+	width: 80px;
+	height: 25px;
+}
+
+.inText {
+	width: 180px;
+	height: 25px;
+}
+
+tr {
+	height: 35px;
+}
+
+select {
+	width: 90px;
+	height: 25px;
+}
+
+.tree_img{
+	margin-top:60px;
+	margin-left:182px;
+}
+td {
+	font-size: 14px;
+}
+
+.empty {
+	margin-top: 15px;
+}

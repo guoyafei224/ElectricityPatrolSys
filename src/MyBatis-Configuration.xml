@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="beHeTask" type="team.ElectricityPatrolSys.entity.BeHeTask" />
+		<typeAlias alias="ptu" type="team.ElectricityPatrolSys.entity.PollTaskUser" />
+		<typeAlias alias="btu" type="team.ElectricityPatrolSys.entity.BeheTaskUser" />
+		<typeAlias alias="bug" type="team.ElectricityPatrolSys.entity.Bug" />
+		<typeAlias alias="bugLeave" type="team.ElectricityPatrolSys.entity.BugLeave" />
+		<typeAlias alias="bugType" type="team.ElectricityPatrolSys.entity.BugType" />
+		<typeAlias alias="circuit" type="team.ElectricityPatrolSys.entity.Circuit" />
+		<typeAlias alias="pollTask" type="team.ElectricityPatrolSys.entity.PollTask" />
+		<typeAlias alias="statusComm"
+			type="team.ElectricityPatrolSys.entity.StatusComm" />
+		<typeAlias alias="sysLimit" type="team.ElectricityPatrolSys.entity.SysLimit" />
+		<typeAlias alias="sysLog" type="team.ElectricityPatrolSys.entity.SysLog" />
+		<typeAlias alias="sysRole" type="team.ElectricityPatrolSys.entity.SysRole" />
+		<typeAlias alias="sysRoleLimit"
+			type="team.ElectricityPatrolSys.entity.SysRoleLimit" />
+		<typeAlias alias="sysUser" type="team.ElectricityPatrolSys.entity.SysUser" />
+		<typeAlias alias="sysUserRole"
+			type="team.ElectricityPatrolSys.entity.SysUserRole" />
+		<typeAlias alias="tower" type="team.ElectricityPatrolSys.entity.Tower" />
+		<typeAlias alias="mywork" type="team.ElectricityPatrolSys.entity.MyWorkList" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="team/ElectricityPatrolSys/dao/SysLimitMapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/SysRoleMapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/SysUserMapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/TowerMapper.xml" />
+	    <mapper resource="team/ElectricityPatrolSys/dao/CircuitMapper.xml" />
+	    <mapper resource="team/ElectricityPatrolSys/dao/PatrolTaskMapper.xml" />
+	    <mapper resource="team/ElectricityPatrolSys/dao/StatusCommmapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/BugTypeMapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/BugMapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/SysLogMapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/MyWorkListMapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/DeElimTaskMapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/BugLeaveMapper.xml" />
+		<mapper resource="team/ElectricityPatrolSys/dao/DoDeElimTaskMapper.xml" />
+	</mappers>
+
+</configuration>

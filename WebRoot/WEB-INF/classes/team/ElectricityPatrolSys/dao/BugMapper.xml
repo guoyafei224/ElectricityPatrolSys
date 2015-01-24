@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.ElectricityPatrolSys.dao.BugDao">
+	<resultMap id="bugMap" type="bug">
+		<result property="bug_id" column="bug_id" />
+		<result property="find_time" column="find_time" />
+		<result property="des" column="des" />
+		<association property="sysUser" javaType="sysUser">
+			<result property="user_id" column="find_user_id" />
+			<result property="user_name" column="find_user_name" />
+		</association>
+		<association property="tower" javaType="tower">
+			<result property="tower_id" column="tower_id" />
+			<result property="good_proc" column="good_proc" />
+		</association>
+		<association property="pollTask" javaType="pollTask">
+			<result property="task_id" column="task_id" />
+			<result property="task_name" column="task_name" />
+			<result property="ok_time" column="ok_time" />
+			<result property="from_date" column="from_date" />
+			<result property="istrue" column="istrue" />
+			<result property="des" column="des" />
+			<result property="task_num" column="task_num" />
+			<association property="fromSysUser" javaType="sysUser">
+				<result property="user_id" column="from_user_id" />
+				<result property="user_name" column="from_user_name" />
+			</association>
+			<association property="circuit" javaType="circuit">
+				<result property="circuit_id" column="circuit_id" />
+				<result property="circuit_name" column="circuit_name" />
+				<result property="start_tower_id" column="start_tower_id" />
+				<result property="end_tower_id" column="end_tower_id" />
+			</association>
+		</association>
+		<association property="bugLeave" javaType="bugLeave">
+			<result property="bug_leave_id" column="bug_leave_id" />
+			<result property="bug_leave_name" column="bug_leave_name" />
+		</association>
+		<association property="bugType" javaType="bugType">
+			<result property="bug_type_id" column="bug_type_id" />
+			<result property="bug_type_name" column="bug_type_name" />
+		</association>
+		<association property="beHeTask" javaType="beHeTask">
+			<result property="task_id" column="task_id" />
+			<result property="ok_time" column="ok_time" />
+			<result property="task_name" column="task_name" />
+		</association>
+		<!-- <association property="bug" javaType="bug"> <result property="task_id" 
+			column="behe_task_id" /> <result property="tower_id" column="tower_id" /> 
+			<result property="find_time" column="find_time" /> </association> -->
+
+	</resultMap>
+
+	<select id="queryBugByTowerIdAndTaskId" parameterType="map"
+		resultMap="bugMap" resultType="bug">
+		select b.bug_id,
+		u.user_id find_user_id,
+		u.user_name find_user_name,
+		ty.bug_type_id,
+		ty.bug_type_name,
+		l.bug_leave_id,
+		l.bug_leave_name,
+		t.tower_id,
+		t.good_proc,
+		b.des,
+		up.user_id from_user_id,
+		up.user_name
+		from_user_name,
+		p.from_date,
+		b.find_time
+		from bug b
+		left join sys_user u
+		on u.user_id = b.find_user_id
+		left join tower t
+		on t.tower_id =
+		b.tower_id
+		left join poll_task p
+		on p.task_id = b.poll_task_id
+		left join
+		sys_user up
+		on up.user_id = p.from_user_id
+		left join bug_type ty
+		on
+		ty.bug_type_id = b.bug_type_id
+		left join bug_leave l
+		on l.bug_leave_id =
+		b.bug_leave_id
+		where p.task_id=#{taskId} and t.tower_id=#{towerId}
+	</select>
+	<!-- 查询全部巡检信息 杨维强 -->
+	<select id="getAllPollTask" resultMap="bugMap" parameterType="map">
+		select * from (select *
+		from (select rownum rn, z.* from bug z) b
+		left
+		join tower t
+		on t.tower_id = b.tower_id
+		left join poll_task p_t
+		on
+		p_t.task_id = b.poll_task_id
+		left join circuit c
+		on c.circuit_id =
+		p_t.circuit_id
+		left join bug_leave b_l
+		on b_l.bug_leave_id =
+		b.bug_leave_id
+		left join bug_type b_t
+		on b_t.bug_type_id = b.bug_type_id
+		order by rn)
+		where rn > #{start} and rn <![CDATA[<=]]>
+		#{end}
+	</select>
+	<!-- 查询巡检任务信息总条数 -->
+	<select id="getPollTaskSum" resultType="Integer">
+		select count(*) from bug
+	</select>
+	<select id="getAllBeHeTaskSum" resultType="Integer">
+		select count(*) from bug where behe_task_id in (select behe_task_id from bug)
+	</select>
+	<!-- 查询消缺任务记录 -->
+	<select id="getAllBeHeTask" resultMap="bugMap" parameterType="map">
+		select * from (select rownum rn, bt.task_id,
+		bt.task_name,
+		it.circuit_id,
+		it.start_tower_id,
+		it.end_tower_id,
+		bl.bug_leave_name,
+		bug.bug_id,
+		bug.tower_id,
+		ve.bug_type_name,
+		bt.ok_time,
+		bug.find_time,
+		pt.des
+		from
+		behe_task bt
+		bug.des
+		from
+		behe_task bt
+		left join bug bug
+		on bt.task_id = bug.behe_task_id
+		left join
+		poll_task pt
+		on pt.task_id = bug.poll_task_id
+		left join circuit it
+		on
+		it.circuit_id = pt.circuit_id
+		left join bug_leave bl
+		on bl.bug_leave_id
+		= bug.bug_leave_id
+		left join bug_type ve
+		on ve.bug_type_id =
+		bug.bug_type_id)where rn > #{start} and rn <![CDATA[<=]]>
+		#{end}
+	</select>
+
+	<!-- 添加缺陷  -->
+	<insert id="saveBug" parameterType="bug">
+		insert into bug
+		values(se_bug.nextval,#{sysUser.user_id},#{find_time},#{tower.tower_id},#{bugLeave.bug_leave_id},#{des},#{bugType.bug_type_id},#{pollTask.task_id},NULL)
+	</insert>
+	
+	<!-- 更新缺陷  -->
+	<update id="updateBug" parameterType="bug">
+		update bug
+		set find_user_id=#{sysUser.user_id},find_time=#{find_time},bug_leave_id=#{bugLeave.bug_leave_id},des=#{des},bug_type_id=#{bugType.bug_type_id}
+		where bug_id=#{bug_id}
+	</update>
+	
+	<!-- 删除缺陷 -->
+	<delete id="delBug" parameterType="String">
+		delete bug where bug_id=#{bug_id}
+	</delete>
+</mapper>
+

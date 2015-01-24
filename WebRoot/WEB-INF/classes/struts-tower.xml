@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+
+	<package name="tower_json" namespace="/" extends="json-default">
+		<action name="*_Tower" class="towerAction" method="{1}">
+			<result type="json" name="getAllTower">
+				<param name="root">obj</param>
+			</result>
+		</action>
+		<action name="Tower_*" class="towerAction" method="{1}">
+			<result type="json" name="queryTowerInfoById">
+				<param name="root">tower</param>
+			</result>
+			<result type="json" name="getCircuitName">
+				<param name="root">circuit</param>
+			</result>
+			<result type="json" name="getTowerByCricuitId">
+				<param name="root">trees</param>
+			</result>
+		</action>
+	</package>
+</struts>    

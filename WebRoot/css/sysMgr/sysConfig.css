@@ -1,0 +1,35 @@
+body {
+	padding: 0 0 0 10px;
+	width: 980px;
+	height: auto;
+	margin:50px 0px 0px 50px;
+	background-color: #F7F7F7;
+}
+
+#all{
+	width: 900px;
+	height:600px;
+	margin:0px 0px;
+	text-align:center;
+}
+
+#datagrid{
+	width:900px;
+	height:600px;
+	margin:100px 80px;
+}
+
+#showDialog{
+	padding-top:20px;
+	margin:0px auto;
+	line-height:45px;
+	padding-left:60px;
+}
+
+
+#updateForshowDialog{
+	padding-top:20px;
+	margin:0px auto;
+	line-height:45px;
+	padding-left:60px;
+}

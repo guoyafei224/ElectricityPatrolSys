@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="team.ElectricityPatrolSys.dao.DoDeElimTaskDao">
+
+
+	<!-- 提交审核意见 -->
+	<update id="updateShen" parameterType="beHeTask">
+		update behe_task be
+		set
+		be.exam_idea=#{exam_idea},
+		be.ok_des=#{ok_des},
+		be.from_user_idea=#{from_user_idea},
+		be.exam_status=#{exam_status},
+		be.task_status_id='1010'
+		where be.task_id=#{task_id}
+	</update>
+
+
+	<update id="updateBeHeTask" parameterType="beHeTask">
+		update behe_task be
+		set
+		be.task_name=#{task_name},
+		be.des=#{des},
+		be.istrue=#{istrue}
+		where
+		be.task_id=#{task_id}
+	</update>
+
+	<!-- 用户这个先删除 -->
+	<delete id="delBeHeTaskUser" parameterType="string">
+		delete from
+		behe_task_user be
+		where be.behe_task_id=#{behe_task_id}
+	</delete>
+
+	<!-- 修改该消缺任务所对应得bug,将这些bug对应的消缺任务id改为空 -->
+	<update id="updateBugByTid" parameterType="string">
+		update bug b
+		set
+		b.behe_task_id=''
+		where b.behe_task_id=#{behe_task_id}
+	</update>
+
+	<!-- 取消任务 -->
+	<update id="updateCancelTask" parameterType="String">
+		update behe_task be
+		set be.istrue=1
+		where be.task_id=#{task_id}
+	</update>
+
+	<!-- 添加消缺任务 -->
+	<insert id="addBeheTask" parameterType="beHeTask">
+		insert into behe_task
+		(task_id,task_name,from_user_id,from_date,des,task_status_id,istrue)
+		values('RW'||se_behe_task.nextval,#{task_name},#{from_user_id},#{from_date},#{des},#{task_status_id},#{istrue})
+		<selectKey keyProperty="task_id" order="AFTER" resultType="string">
+			select 'RW'||se_behe_task.currval from dual
+		</selectKey>
+	</insert>
+
+	<!-- 添加消缺任务同时添加消缺任务人员表信息 -->
+	<insert id="addBeHeTaskUser" parameterType="btu">
+		insert into
+		behe_task_user(btu_id,behe_task_id,sys_user_id)
+		values(btu_user.nextval,#{behe_task_id},#{sys_user_id})
+	</insert>
+	<!-- 添加消缺任务同时修改缺陷表中对应的消缺任务id -->
+	<update id="updateBugByID" parameterType="bug">
+		update bug b
+		set
+		b.behe_task_id=#{behe_task_id}
+		where b.bug_id=#{bug_id}
+	</update>
+
+	<!-- 查询总条数 -->
+	<select id="getBeHeTaskWeiCoung" resultType="int">
+		select count(*)
+		from
+		bug b
+		left join tower t
+		on t.tower_id=b.tower_id
+		left join sys_user
+		u
+		on b.find_user_id=u.user_id
+		left join circuit c
+		on
+		c.circuit_id=t.circuit_id
+		left join bug_type bt
+		on
+		bt.bug_type_id=b.bug_type_id
+		left join bug_leave bl
+		on
+		bl.bug_leave_id=b.bug_leave_id
+		left join poll_task po
+		on po.task_id=b.poll_task_id
+		where po.task_status_id=1010
+		and b.behe_task_id is null
+		or b.behe_task_id=''
+	</select>
+	<!-- 查询所有未分配消缺任务的缺陷信息 -->
+	<select id="getBeHeTaskWei" resultMap="bugInfo">
+		select
+		b.bug_id,b.des,b.find_time,c.circuit_id,c.circuit_name,bt.bug_type_name,bl.bug_leave_name,u.user_name,t.tower_id
+		from bug b
+		left join tower t
+		on t.tower_id=b.tower_id
+		left join sys_user
+		u
+		on b.find_user_id=u.user_id
+		left join circuit c
+		on
+		c.circuit_id=t.circuit_id
+		left join bug_type bt
+		on
+		bt.bug_type_id=b.bug_type_id
+		left join bug_leave bl
+		on
+		bl.bug_leave_id=b.bug_leave_id
+		left join poll_task po
+		on po.task_id=b.poll_task_id
+		where po.task_status_id=1010
+		and b.behe_task_id is null
+		or b.behe_task_id=''
+	</select>
+
+	<resultMap id="beHeUser" type="btu">
+		<id property="btu_id" column="btu_id" />
+		<association property="sysUser" javaType="sysUser">
+			<id property="user_id" column="user_id" />
+			<result property="user_name" column="user_name" />
+		</association>
+	</resultMap>
+	<!-- 根据任务id，查询所有消缺员名称 -->
+	<select id="getBeheUser" parameterType="string" resultMap="beHeUser">
+		select u.user_name,btu.*
+		from behe_task_user btu
+		left join sys_user u
+		on
+		u.user_id=btu.sys_user_id
+		where btu.behe_task_id=#{t_id}
+	</select>
+	<!-- 根据任务id，查询详细的消缺任务id -->
+	<select id="getBeHeTaskById" parameterType="string" resultMap="beheTask">
+		select
+		be.task_id,be.task_name,be.des,u.user_name,sc.config_name,be.ok_time,be.exam_idea,be.from_user_idea,be.from_date,
+		be.exam_status,be.report_matter,be.istrue
+		from behe_task be
+		left join
+		sys_user u
+		on u.user_id=be.from_user_id
+		left join status_comm sc
+		on
+		be.task_status_id=sc.status_id
+		where be.task_id=#{task_id}
+	</select>
+
+
+	<resultMap id="bugInfo" type="bug">
+		<id property="bug_id" column="bug_id" />
+		<result property="find_time" column="find_time" />
+		<result property="des" column="des" />
+		<association property="sysUser" javaType="sysUser">
+			<id property="user_id" column="user_id" />
+			<result property="user_name" column="user_name" />
+		</association>
+		<association property="tower" javaType="tower">
+			<id property="tower_id" column="tower_id" />
+			<association property="circuit" javaType="circuit">
+				<id property="circuit_id" column="circuit_id" />
+				<result property="circuit_name" column="circuit_name" />
+			</association>
+		</association>
+		<association property="bugType" javaType="bugType">
+			<id property="bug_type_id" column="bug_type_id" />
+			<result property="bug_type_name" column="bug_type_name" />
+		</association>
+		<association property="bugLeave" javaType="bugLeave">
+			<id property="bug_leave_id" column="bug_leave_id" />
+			<result property="bug_leave_name" column="bug_leave_name" />
+		</association>
+	</resultMap>
+	<!-- 根据任务id，查询下属bug信息 -->
+	<select id="getBugById" parameterType="string" resultMap="bugInfo">
+		select
+		b.bug_id,b.des,b.find_time,c.circuit_id,c.circuit_name,bt.bug_type_name,bl.bug_leave_name,u.user_name,t.tower_id
+		from bug b
+		left join tower t
+		on t.tower_id=b.tower_id
+		left join sys_user
+		u
+		on b.find_user_id=u.user_id
+		left join circuit c
+		on
+		c.circuit_id=t.circuit_id
+		left join bug_type bt
+		on
+		bt.bug_type_id=b.bug_type_id
+		left join bug_leave bl
+		on
+		bl.bug_leave_id=b.bug_leave_id
+		where b.behe_task_id=#{task_id}
+
+	</select>
+
+	<resultMap type="beHeTask" id="beheTask">
+		<id property="task_id" column="task_id" />
+		<result property="task_name" column="task_name" />
+		<result property="from_date" column="from_date" />
+		<result property="ok_time" column="ok_time" />
+		<result property="istrue" column="istrue" />
+		<result property="exam_idea" column="exam_idea" />
+		<result property="des" column="des" />
+		<result property="from_user_idea" column="from_user_idea" />
+		<result property="ok_des" column="ok_des" />
+		<result property="exam_status" column="exam_status" />
+		<result property="report_matter" column="report_matter" />
+		<result property="istrue" column="istrue" />
+		<association property="fromSysUser" javaType="sysUser">
+			<id property="user_id" column="user_id" />
+			<result property="user_name" column="user_name" />
+		</association>
+		<association property="statusComm" javaType="statusComm">
+			<result property="status_id" column="status_id" />
+			<result property="config_name" column="config_name" />
+		</association>
+	</resultMap>
+	<!-- 消缺任务的制定与分配中的查询 进行分页和按条件查询 -->
+	<select id="getBeheTask" parameterType="map" resultMap="beheTask">
+		select hhe.*
+		from
+		(select he.*,rownum rn from
+		(select
+		be.task_id,be.task_name,u.user_name,sc.status_id,be.from_date,sc.config_name,be.ok_time,be.istrue,be.des
+		from behe_task be
+		left join sys_user u
+		on u.user_id=be.from_user_id
+		left
+		join status_comm sc
+		on sc.status_id=be.task_status_id
+		where 1=1
+		<if test="task_id!=null and task_id!=''">
+			and be.task_id like '%${task_id}%'
+		</if>
+		<if test="task_name!=null and task_name!=''">
+			and be.task_name like '%${task_name}%'
+		</if>
+		<if test="user_name!=null and user_name!=''">
+			and u.user_name like '%${user_name}%'
+		</if>
+		<if test="status_id!=null and status_id!=''">
+			and sc.status_id=#{status_id}
+		</if>
+		<if test="from_date1!='' and from_date1!=null">
+			and be.from_date>#{from_date1}
+		</if>
+		<if test="from_date2!='' and from_date2!=null">
+			and be.from_date<![CDATA[<]]>#{from_date2}
+		</if>
+		order by be.from_date)he
+		where rownum<![CDATA[<=]]>#{end})
+		hhe
+		where rn>#{start}
+	</select>
+
+	<!-- 查询总条数 -->
+	<select id="getBeheTaskCount" parameterType="map" resultType="int">
+		select count(*)
+		from behe_task be
+		left join sys_user u
+		on
+		u.user_id=be.from_user_id
+		left join status_comm sc
+		on
+		sc.status_id=be.task_status_id
+		where 1=1
+		<if test="task_id!=null and task_id!=''">
+			and be.task_id like '%${task_id}%'
+		</if>
+		<if test="task_name!=null and task_name!=''">
+			and be.task_name like '%${task_name}%'
+		</if>
+		<if test="user_name!=null and user_name!=''">
+			and u.user_name like '%${user_name}%'
+		</if>
+		<if test="status_id!=null and status_id!=''">
+			and sc.status_id=#{status_id}
+		</if>
+		<if test="from_date1!='' and from_date1!=null">
+			and be.from_date>#{from_date1}
+		</if>
+		<if test="from_date2!='' and from_date2!=null">
+			and be.from_date<![CDATA[<]]>#{from_date2}
+		</if>
+
+	</select>
+</mapper>
